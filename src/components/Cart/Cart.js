@@ -5,6 +5,7 @@ import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
+import { formatPrice } from "../util/helpers";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -12,7 +13,7 @@ const Cart = (props) => {
   const [didSubmit, setDidSubmit] = useState(false);
   const cartCtx = useContext(CartContext);
 
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `${formatPrice(cartCtx.totalAmount)}`;
   const hasItems = cartCtx.items.length > 0;
 
   const cartItemRemoveHandler = (id) => {
